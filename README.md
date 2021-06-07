@@ -40,3 +40,20 @@ networks:
 * The next screen asks for which plugins to install. Choose custom or recommended install (as per your wish). This takes a while.
 * After installation is complete, Jenks will ask you to create the first admin account. Assign username and password to the admin account. It will also ask for Jenkins URL. Preferrable leave as it is.
 * Once setup is complete, Jenkins might ask you to login using the admin credentials.
+
+To start a container, `docker-compose start` and to stop it use `docker-compose stop`.
+To restart `docker-compose restart jenkins`
+To delete the container, `dcoker-compose down`. This will not delete the container data.
+
+## Jenkins UI
+* `New Item`: Create a new jenkins job. This has a number of templates.
+* `People`: List of people who can access this account along with their permission levels.
+* `Build History`: History of builds. Very intuitive :P
+* `Credentials`: Manage credentials to be used in the jenkins jobs
+* `Manage Jenkins`: Manage the jenkins account.
+
+### Creating First Job
+* Click on `New Item`. Give a name to this job and select Freestyle Project.
+* Under `Build` section, there is an option `Execute shell`. This will be executed in the same shell as `docker exec -ti jenkins bash` i.e. the container's shell.
+* A text box appears. Here type `echo Hello World`. And save.
+* On the left side, there will be an option `Build Now`. This will trigger the job and you can see the output in `Console Output` option on the left in the build's page.
