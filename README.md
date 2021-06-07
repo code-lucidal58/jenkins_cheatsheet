@@ -38,3 +38,5 @@ networks:
 
 * Hit localhost:8080 in a browser and login using this password.
 * The next screen asks for which plugins to install. Choose custom or recommended install (as per your wish). This takes a while.
+* After installation is complete, Jenks will ask you to create the first admin account. Assign username and password to the admin account. It will also ask for Jenkins URL. Preferrable leave as it is.
+* Once setup is complete, Jenkins might ask you to login using the admin credentials.
