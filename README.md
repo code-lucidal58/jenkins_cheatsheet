@@ -57,3 +57,21 @@ To delete the container, `dcoker-compose down`. This will not delete the contain
 * Under `Build` section, there is an option `Execute shell`. This will be executed in the same shell as `docker exec -ti jenkins bash` i.e. the container's shell.
 * A text box appears. Here type `echo Hello World`. And save.
 * On the left side, there will be an option `Build Now`. This will trigger the job and you can see the output in `Console Output` option on the left in the build's page.
+Reconfigure the job by clicking `Configure` in the jobs page. Please take not of the words `jobs` and `builds`. Jobs produce builds. In the place you entered shell script, you can use other commands or env variables compatible to the container shell, like `date, who ami, etc`. Few examples are as follows:
+```shell
+NAME=aanimish
+echo "Hello aanimish. Current date is $(date)"
+echo "Hello aanimish. Current date is $(date)" > /temp/data
+```
+The file written in the last line resides in the container.
+
+###
+You execute a script file in a job, the file should be present in the container. The Jenkins container does not vi ninstalled in it. To move a file from local system,
+to the container use `docker cp <filepath in local system> jenkins:<full filepath in container>`. For example, `docker cp script.sh jenkins:/tmp/script.sh`. 
+
+The script might need parameters from the user. To add parameters to the job, go to `Configure`. Under the general tab, there must be an option similar to `This 
+project is parameterised`. Here, the parameters name, default value and description is specified. There a number of different data type variables that can be 
+defined. Most commonly used to `string type`. Adding parameters, change the `Build` option in the left side of the job changes to `Build with Parameters`.
+
+To create a list parameter, choose `Choice Parameter`. This creates a dropdown from the user. Mention each choice in a new line while adding parameters. 
+While setting boolean parameters, there is a checkboc `Default Value`. If checked, the default value will be True, otherwise no default values. Boolean parameter is shown as checkbox to the user. 
